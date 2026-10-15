@@ -106,16 +106,18 @@
     @media (max-width:600px){.payment-options{padding:14px}.payment-preview{padding:14px}.payment-check{font-size:14px}}
     @media (max-device-width:650px) and (min-width:801px){.payment-options{padding:24px 26px;border-radius:23px}.payment-check{font-size:28px;gap:18px}.payment-check input[type="checkbox"]{height:36px;width:36px;min-width:36px;flex-basis:36px}.payment-help{font-size:21px;margin:12px 0 0 54px}.payment-preview{padding:26px}.payment-preview strong{font-size:23px}.payment-copy-text{font-size:26px}}
 
+    /* Official SB Kaubariškis transparent brand logo. */
+    .brand{display:flex;align-items:center;justify-content:flex-start;gap:0}
+    .site-logo{display:block;width:min(300px,100%);height:auto;max-height:none;object-fit:contain}
+    @media(max-width:600px){.site-logo{width:min(245px,100%)}}
+    @media(max-device-width:650px) and (min-width:801px){.site-logo{width:460px;max-width:100%}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;scroll-behavior:auto!important}}
   </style>
 </head>
 <body>
   <main class="shell">
-    <header class="brand" aria-label="Sodininkų bendrija Kaubariškis">
-      <span class="brand-mark" aria-hidden="true">
-        <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11"/><path d="M12 15c-6 0-8-3-8-8 6 0 8 3 8 8Z"/><path d="M12 12c0-5 3-8 8-8 0 6-3 8-8 8Z"/></svg>
-      </span>
-      <span class="brand-text">SODININKŲ BENDRIJA „KAUBARIŠKIS“</span>
+    <header class="brand" aria-label="SB Kaubariškis">
+      <img class="site-logo" src="assets/logo.png" alt="SB Kaubariškis" width="320" height="143" fetchpriority="high">
     </header>
     <section class="layout">
       <div>
