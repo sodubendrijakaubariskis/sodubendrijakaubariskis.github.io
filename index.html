@@ -9,7 +9,7 @@
   <style>
     :root{color-scheme:light;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f2f5f1;color:#19342e}
     *,*::before,*::after{box-sizing:border-box}body{margin:0;min-height:100vh;min-height:100svh;background:radial-gradient(circle at 8% 0%,#e0ebdf 0,transparent 38%),radial-gradient(circle at 95% 93%,#e7e8db 0,transparent 30%),#f2f5f1}
-    .shell{max-width:1050px;margin:auto;padding:44px 24px 24px}.brand{display:flex;align-items:center;gap:11px;font-size:14px;letter-spacing:.14em;font-weight:800;color:#2c6150}.brand-mark{width:39px;height:39px;border-radius:13px;background:#153e34;color:#fff;display:grid;place-items:center}
+    .shell{max-width:1050px;margin:auto;padding:44px 24px 24px}.brand{display:flex;align-items:center;gap:13px;font-size:18px;line-height:1.3;letter-spacing:.055em;font-weight:800;color:#2c6150}.brand-mark{flex:0 0 39px}.brand-text{overflow-wrap:normal}.brand-mark{width:39px;height:39px;border-radius:13px;background:#153e34;color:#fff;display:grid;place-items:center}
     .layout{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:center;gap:60px;margin:56px 0 40px}
     .eyebrow{font-size:12px;font-weight:800;letter-spacing:.18em;color:#527d66;text-transform:uppercase;margin:0 0 18px}
     h1{font-size:clamp(36px,4.6vw,64px);line-height:1.08;letter-spacing:-.055em;margin:0 0 20px;color:#123b33}h1 em{font-style:normal;color:#62836b}
@@ -32,7 +32,7 @@
     .footer{border-top:1px solid #dce4da;display:flex;justify-content:space-between;gap:20px;padding:20px 0;color:#708277;font-size:12px;line-height:1.6}.footer a{color:#366b50;text-decoration:none}.footer a:hover{text-decoration:underline}
     .toast{font-size:12px;text-align:center;color:#236747;min-height:19px;margin:12px 0 0}.hidden{display:none}
     @media(max-width:800px){.shell{padding:22px 17px 15px}.layout{grid-template-columns:1fr;gap:24px;margin:35px 0 30px}.intro{font-size:15px}h1{max-width:610px}.features{margin-top:20px}.card{padding:26px 22px;border-radius:22px}}
-    @media(max-width:490px){h1{font-size:39px}.brand{font-size:12px}.card{padding:23px 17px}.features li{font-size:11px}.footer{flex-direction:column;gap:7px}input{font-size:16px}.card-heading{margin-bottom:22px}}
+    @media(max-width:490px){h1{font-size:39px}.brand{font-size:16px;letter-spacing:.025em}.card{padding:23px 17px}.features li{font-size:11px}.footer{flex-direction:column;gap:7px}input{font-size:16px}.card-heading{margin-bottom:22px}}
 
     /* Responsive layout: avoid cramped two-column view at laptop/tablet widths. */
     html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
@@ -48,7 +48,7 @@
     }
     @media (max-width:600px){
       .shell{padding:22px 16px 20px}
-      .brand{font-size:12px;letter-spacing:.10em}
+      .brand{font-size:16px;letter-spacing:.025em}
       .layout{gap:25px;margin:35px 0 31px}
       .eyebrow{font-size:11px;letter-spacing:.11em;margin-bottom:15px}
       h1{font-size:clamp(34px,9.3vw,46px);line-height:1.10;margin-bottom:14px}
@@ -67,8 +67,8 @@
     @media (max-device-width:650px) and (min-width:801px){
       .shell{max-width:970px;padding:35px 35px 30px}
       .layout{gap:42px;margin:46px 0 42px}
-      .brand{font-size:24px;letter-spacing:.08em;gap:20px}
-      .brand-mark{width:65px;height:65px}
+      .brand{font-size:30px;letter-spacing:.025em;gap:20px}
+      .brand-mark{width:65px;height:65px;flex-basis:65px}
       .eyebrow{font-size:22px;letter-spacing:.09em;margin-bottom:17px}
       h1{font-size:68px;line-height:1.12;margin-bottom:20px;max-width:850px}
       .intro{font-size:29px;line-height:1.5;max-width:880px}
@@ -93,6 +93,19 @@
       .toast{font-size:20px}
     }
 
+
+    /* Optional fee in the copied bank transfer purpose. */
+    .payment-options{margin:22px 0 0;text-align:left;padding:15px 16px;background:#fff;border:1px solid #d3e2d4;border-radius:14px}
+    .payment-check{display:flex;align-items:center;gap:11px;margin:0;font-size:14px;font-weight:750;color:#264e3d;cursor:pointer}
+    .payment-check input[type="checkbox"]{appearance:auto;-webkit-appearance:checkbox;width:21px;height:21px;min-width:21px;flex:0 0 21px;margin:0;padding:0;border:0;accent-color:#144c3e;cursor:pointer;box-shadow:none}
+    .payment-check input[type="checkbox"]:focus-visible{outline:3px solid #9cc8ac;outline-offset:3px}
+    .payment-help{font-size:12px;line-height:1.5;color:#65786b;margin:9px 0 0 32px}
+    .payment-preview{margin:14px 0 0;text-align:left;border:1px solid #d3e2d4;border-radius:13px;padding:15px 16px;background:#e7f0e6}
+    .payment-preview strong{display:block;margin-bottom:7px;font-size:12px;color:#315f45}
+    .payment-copy-text{font-size:14px;line-height:1.55;font-weight:650;overflow-wrap:anywhere;color:#193e30;margin:0}
+    @media (max-width:600px){.payment-options{padding:14px}.payment-preview{padding:14px}.payment-check{font-size:14px}}
+    @media (max-device-width:650px) and (min-width:801px){.payment-options{padding:24px 26px;border-radius:23px}.payment-check{font-size:28px;gap:18px}.payment-check input[type="checkbox"]{height:36px;width:36px;min-width:36px;flex-basis:36px}.payment-help{font-size:21px;margin:12px 0 0 54px}.payment-preview{padding:26px}.payment-preview strong{font-size:23px}.payment-copy-text{font-size:26px}}
+
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;scroll-behavior:auto!important}}
   </style>
 </head>
@@ -102,7 +115,7 @@
       <span class="brand-mark" aria-hidden="true">
         <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11"/><path d="M12 15c-6 0-8-3-8-8 6 0 8 3 8 8Z"/><path d="M12 12c0-5 3-8 8-8 0 6-3 8-8 8Z"/></svg>
       </span>
-      SB „KAUBARIŠKIS“
+      <span class="brand-text">SODININKŲ BENDRIJA „KAUBARIŠKIS“</span>
     </header>
     <section class="layout">
       <div>
@@ -165,10 +178,28 @@ async function search(){
   if(code===undefined){let el=add("div","notfound",null,outcome);add("strong",null,"Adreso neradome",el);add("p",null,"Patikrinkite gatvės pavadinimą ir sklypo numerį. Adresas turi būti įvestas tiksliai; automatiniai pasiūlymai nerodomi duomenų apsaugos sumetimais.",el);contact(el);return;}
   if(!code){let el=add("div","warning",null,outcome);add("strong",null,"Šiam adresui reikia patikslinti sektorių",el);add("p",null,"Registre šiam adresui pateikti skirtingi sektoriaus kodai. Dėl teisingo kodo kreipkitės į bendriją.",el);contact(el);return;}
   let el=add("div","result",null,outcome);add("p","result-label","Jūsų sektorius",el);add("div","code",code,el);add("p","result-address",address,el);
+  // This choice changes only the text copied into a bank transfer. It does not determine the user's fee obligations.
+  const fees=add("div","payment-options",null,el);
+  const feeLabel=add("label","payment-check",null,fees);
+  const feeToggle=document.createElement("input");
+  feeToggle.type="checkbox";
+  feeToggle.checked=false;
+  feeLabel.appendChild(feeToggle);
+  add("span",null,"Įtraukti talkos mokestį",feeLabel);
+  add("p","payment-help","Pažymėkite, jei šiame pavedime mokate ir talkos mokestį. Ar jį mokėti privaloma, pasitikrinkite pagal bendrijos informaciją.",fees);
+  const preview=add("div","payment-preview",null,el);
+  add("strong",null,"Mokėjimo paskirtis, kuri bus nukopijuota",preview);
+  const paymentPreview=add("p","payment-copy-text","",preview);
+  function paymentPurpose(){
+    return (feeToggle.checked ? "Nario mokestis ir talkos mokestis" : "Nario mokestis")+", sektorius "+code+", "+address;
+  }
+  function updatePreview(){paymentPreview.textContent=paymentPurpose();}
+  feeToggle.addEventListener("change",()=>{updatePreview();status("");});
+  updatePreview();
   let row=add("div","button-row",null,el);
   let c=add("button","outline-button","Kopijuoti kodą",row);c.type="button";c.addEventListener("click",()=>copy(code,"Sektoriaus kodas nukopijuotas."));
-  let p=add("button","outline-button","Kopijuoti mokėjimo paskirtį",row);p.type="button";p.addEventListener("click",()=>copy("Nario mokestis, sektorius "+code+", "+address,"Mokėjimo paskirtis nukopijuota."));
-  add("p","note","Atlikdami mokėjimą papildomai nurodykite asmens, už kurio sklypą mokama, vardą ir pavardę. Adreso paieška vykdoma jūsų naršyklėje, jo nesiunčiant į bendrijos serverį.",el);
+  let p=add("button","outline-button","Kopijuoti mokėjimo paskirtį",row);p.type="button";p.addEventListener("click",()=>copy(paymentPurpose(),"Mokėjimo paskirtis nukopijuota."));
+  add("p","note","Sklypo adresas į mokėjimo paskirtį įtraukiamas automatiškai iš paieškos laukelio. Atlikdami pavedimą papildomai nurodykite asmens, už kurio sklypą mokama, vardą ir pavardę. Paieška vykdoma jūsų naršyklėje, adreso nesiunčiant į bendrijos serverį.",el);
  }catch(e){if(request===generation){outcome.hidden=false;let warn=add("div","warning",null,outcome);add("strong",null,"Paieška laikinai nepavyko",warn);add("p",null,"Pabandykite atnaujinti puslapį arba susisiekite su bendrija.",warn);}}
 }
 async function copy(value,msg){try{if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(value);}else{let n=document.createElement("textarea");n.value=value;n.style.position="fixed";n.style.opacity="0";document.body.appendChild(n);n.select();let ok=document.execCommand("copy");n.remove();if(!ok)throw Error("copy failed");}status(msg);}catch(e){status("Nepavyko nukopijuoti. Pažymėkite tekstą ir nukopijuokite rankiniu būdu.");}}
