@@ -190,7 +190,7 @@ async function search(){
   if(request!==generation)return;
   outcome.hidden=false;
   const code=map.get(key);
-  if(code===undefined){let el=add("div","notfound",null,outcome);el.setAttribute("role","alert");add("strong",null,"Adreso neradome",el);add("p",null,"Galbūt neteisingai įvedėte gatvės pavadinimą ar sklypo numerį, arba jūsų sklypas nepriklauso sodininkų bendrijai „Kaubariškis“.",el);add("p",null,"Jei esate tikri, kad sklypas priklauso SB „Kaubariškis“, susisiekite su bendrija.",el);contact(el);return;}
+  if(code===undefined){let el=add("div","notfound",null,outcome);el.setAttribute("role","alert");add("strong",null,"Adreso neradome",el);add("p",null,"Galbūt neteisingai įvedėte gatvės pavadinimą ar sklypo numerį, arba jūsų sklypas nepriklauso sodininkų bendrijai „Kaubariškis“.",el);let p=add("p",null,"Jeigu esate tikri, kad sklypas priklauso SB „Kaubariškis“, kreipkitės el. paštu: ",el);let email=add("a",null,"sb.kaubariskis@gmail.com",p);email.href="mailto:sb.kaubariskis@gmail.com?subject=Sektoriaus%20patikslinimas";return;}
   if(!code){let el=add("div","warning",null,outcome);add("strong",null,"Šiam adresui reikia patikslinti sektorių",el);add("p",null,"Registre šiam adresui pateikti skirtingi sektoriaus kodai. Dėl teisingo kodo kreipkitės į bendriją.",el);contact(el);return;}
   let el=add("div","result",null,outcome);add("p","result-label","Jūsų sektorius",el);add("div","code",code,el);add("p","result-address",address,el);
   // This choice changes only the text copied into a bank transfer. It does not determine the user's fee obligations.
