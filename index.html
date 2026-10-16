@@ -23,7 +23,7 @@
     button{font:inherit;cursor:pointer;transition:transform .1s,background .15s}button:active{transform:scale(.985)}.search-button{margin-top:13px;background:#144c3e;border:0;border-radius:13px;color:#fff;padding:16px 20px;width:100%;font-weight:750;font-size:15px;min-height:54px}.search-button:hover{background:#21624e}
     .helper{margin:14px 0 0;color:#7a8c80;font-size:12px;line-height:1.6}.suggestions{list-style:none;margin:6px 0 0;padding:5px;position:absolute;top:100%;left:0;right:0;max-height:260px;overflow:auto;border-radius:12px;background:#fff;border:1px solid #dce4db;box-shadow:0 14px 25px #213b3122;z-index:3}.suggestions[hidden]{display:none}
     .suggestions button{text-align:left;border:0;background:transparent;padding:12px 14px;width:100%;border-radius:8px;font-size:14px;color:#19342e}.suggestions button:hover,.suggestions button:focus{background:#eef5ee}
-    #outcome{margin-top:22px}#outcome[hidden]{display:none}
+    #outcome{margin-top:22px;scroll-margin-top:22px;outline:none}#outcome[hidden]{display:none}
     .result{background:#f1f7f0;border:1px solid #d5e6d7;border-radius:20px;padding:25px 18px;text-align:center}.result-label{margin:0;color:#4d775e;text-transform:uppercase;font-size:12px;letter-spacing:.13em;font-weight:750}.code{font-size:clamp(54px,9vw,82px);font-weight:850;letter-spacing:-.065em;line-height:1.18;margin:8px 0 3px;color:#154a3b}.result-address{font-size:14px;color:#567063;margin:0}
     .button-row{display:flex;gap:9px;margin-top:20px;flex-wrap:wrap}.outline-button{background:#fff;color:#225640;border:1px solid #b8d4bc;border-radius:10px;padding:11px 13px;font-weight:700;font-size:13px;flex:1;min-width:130px}.outline-button:hover{background:#e9f2e9}
     .note{font-size:12px;color:#6d8375;line-height:1.55;margin:14px 0 0}
@@ -168,6 +168,19 @@ async function digest(s){
 function add(tag,cls,txt,parent){let n=document.createElement(tag);if(cls)n.className=cls;if(txt!==undefined)n.textContent=txt;parent.appendChild(n);return n;}
 function status(msg){toast.textContent=msg;}
 function contact(parent){let p=add("p",null,"Jeigu pastebėjote netikslumą, kreipkitės į bendriją: ",parent);let a=add("a",null,"sb.kaubariskis@gmail.com",p);a.href="mailto:sb.kaubariskis@gmail.com?subject=Sektoriaus%20patikslinimas";}
+function revealOutcome(request){
+  // Close the phone keyboard and bring the result into view, including error messages.
+  if(request!==generation || outcome.hidden || !outcome.firstElementChild)return;
+  input.blur();
+  outcome.setAttribute("tabindex","-1");
+  outcome.focus({preventScroll:true});
+  window.setTimeout(()=>{
+    if(request!==generation || outcome.hidden || !outcome.firstElementChild)return;
+    const reduceMotion=window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const resultFound=outcome.firstElementChild.classList.contains("result");
+    outcome.scrollIntoView({behavior:reduceMotion?"auto":"smooth",block:resultFound?"start":"center"});
+  },220);
+}
 async function search(){
  const request=++generation, address=input.value.trim();
  outcome.hidden=true;outcome.replaceChildren();status("");
@@ -203,6 +216,7 @@ async function search(){
   let p=add("button","outline-button","Kopijuoti mokėjimo paskirtį",row);p.type="button";p.addEventListener("click",()=>copy(paymentPurpose(),"Mokėjimo paskirtis nukopijuota."));
   add("p","note","Sklypo adresas į mokėjimo paskirtį įtraukiamas automatiškai iš paieškos laukelio. Atlikdami pavedimą papildomai nurodykite asmens, už kurio sklypą mokama, vardą ir pavardę. Paieška vykdoma jūsų naršyklėje, adreso nesiunčiant į bendrijos serverį.",el);
  }catch(e){if(request===generation){outcome.hidden=false;let warn=add("div","warning",null,outcome);add("strong",null,"Paieška laikinai nepavyko",warn);add("p",null,"Pabandykite atnaujinti puslapį arba susisiekite su bendrija.",warn);}}
+ finally{revealOutcome(request);}
 }
 async function copy(value,msg){try{if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(value);}else{let n=document.createElement("textarea");n.value=value;n.style.position="fixed";n.style.opacity="0";document.body.appendChild(n);n.select();let ok=document.execCommand("copy");n.remove();if(!ok)throw Error("copy failed");}status(msg);}catch(e){status("Nepavyko nukopijuoti. Pažymėkite tekstą ir nukopijuokite rankiniu būdu.");}}
 input.addEventListener("input",()=>{generation++;outcome.hidden=true;outcome.replaceChildren();status("");});
