@@ -28,7 +28,7 @@
     .button-row{display:flex;gap:9px;margin-top:20px;flex-wrap:wrap}.outline-button{background:#fff;color:#225640;border:1px solid #b8d4bc;border-radius:10px;padding:11px 13px;font-weight:700;font-size:13px;flex:1;min-width:130px}.outline-button:hover{background:#e9f2e9}
     .note{font-size:12px;color:#6d8375;line-height:1.55;margin:14px 0 0}
     .warning{padding:19px;border-radius:15px;background:#fff9ea;border:1px solid #ecd6a4;color:#72501f}.warning strong,.notfound strong{display:block;margin-bottom:7px}.warning p,.notfound p{font-size:14px;line-height:1.55;margin:0}.warning a,.notfound a{color:#27583f;font-weight:700}
-    .notfound{padding:19px;border-radius:15px;background:#f6f8f6;border:1px solid #e0e6de;color:#456052}
+    .notfound{padding:19px;border-radius:15px;background:#fff9e9;border:1px solid #e5cf91;color:#5a491c}.notfound p+p{margin-top:10px}
     .footer{border-top:1px solid #dce4da;display:flex;justify-content:space-between;gap:20px;padding:20px 0;color:#708277;font-size:12px;line-height:1.6}.footer a{color:#366b50;text-decoration:none}.footer a:hover{text-decoration:underline}
     .toast{font-size:12px;text-align:center;color:#236747;min-height:19px;margin:12px 0 0}.hidden{display:none}
     @media(max-width:800px){.shell{padding:22px 17px 15px}.layout{grid-template-columns:1fr;gap:24px;margin:35px 0 30px}.intro{font-size:15px}h1{max-width:610px}.features{margin-top:20px}.card{padding:26px 22px;border-radius:22px}}
@@ -190,7 +190,7 @@ async function search(){
   if(request!==generation)return;
   outcome.hidden=false;
   const code=map.get(key);
-  if(code===undefined){let el=add("div","notfound",null,outcome);add("strong",null,"Adreso neradome",el);add("p",null,"Patikrinkite gatvės pavadinimą ir sklypo numerį. Adresas turi būti įvestas tiksliai; automatiniai pasiūlymai nerodomi duomenų apsaugos sumetimais.",el);contact(el);return;}
+  if(code===undefined){let el=add("div","notfound",null,outcome);el.setAttribute("role","alert");add("strong",null,"Adreso neradome",el);add("p",null,"Galbūt neteisingai įvedėte gatvės pavadinimą ar sklypo numerį, arba jūsų sklypas nepriklauso sodininkų bendrijai „Kaubariškis“.",el);add("p",null,"Jei esate tikri, kad sklypas priklauso SB „Kaubariškis“, susisiekite su bendrija.",el);contact(el);return;}
   if(!code){let el=add("div","warning",null,outcome);add("strong",null,"Šiam adresui reikia patikslinti sektorių",el);add("p",null,"Registre šiam adresui pateikti skirtingi sektoriaus kodai. Dėl teisingo kodo kreipkitės į bendriją.",el);contact(el);return;}
   let el=add("div","result",null,outcome);add("p","result-label","Jūsų sektorius",el);add("div","code",code,el);add("p","result-address",address,el);
   // This choice changes only the text copied into a bank transfer. It does not determine the user's fee obligations.
